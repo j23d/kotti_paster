@@ -1,0 +1,32 @@
+from sqlalchemy import (
+    Table,
+    Column,
+    ForeignKey,
+    Integer,
+    Unicode,
+)
+from sqlalchemy.orm import mapper
+from kotti import metadata
+from kotti.resources import Content
+from {{package}} import _
+
+
+class ContentType(Content):
+    """This is your content type."""
+    
+    # add your columns
+    id = Column(Integer, ForeignKey('contents.id'), primary_key=True)
+    example_text = Column('example_text' Unicode())
+
+    # change the type info to your needs
+    type_info = Content.type_info.copy(
+        name=u'ContentType',
+        title=_(u'Content Type'),
+        add_view=u'add_content_type',
+        addable_to=[u'Document'],
+        )
+
+    # adjust the __init__ method according to your columns
+    def __init__(self, example_text=u'', **kwargs):
+        super(ContentType, self).__init__(**kwargs)
+        self.example_text = example_text

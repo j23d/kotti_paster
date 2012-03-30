@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      metal:use-macro="api.macro('kotti:templates/view/master.pt')">
+
+  <head tal:omit-tag="" metal:fill-slot="head-more">
+    <link rel="stylesheet" href="${request.static_url('{{project}}:static/style.css')}" type="text/css" />
+    <more tal:omit-tag="" metal:define-slot="head"></more>
+  </head>
+
+  <div metal:fill-slot="content" class="content">
+
+    <h1>${api.context.title}</h1>
+    <p class="description">
+      ${api.context.description}
+    </p>
+
+    <p class="text">
+      ${example_text}
+    </p>
+
+  </div>
+</html>

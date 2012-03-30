@@ -1,0 +1,32 @@
+from setuptools import setup, find_packages
+import sys, os
+
+version = '0.1'
+project = '{{project}}'
+
+setup(name=project,
+      version=version,
+      description="",
+      long_description="""\
+""",
+      classifiers=[], # Get strings from http://pypi.python.org/pypi?%3Aaction=list_classifiers
+      keywords='',
+      author='{{author}}',
+      author_email='{{author_email}}',
+      url='',
+      license='GPL',
+      packages=find_packages(exclude=['ez_setup', 'examples', 'tests']),
+      include_package_data=True,
+      zip_safe=False,
+      install_requires=[
+          'Kotti',
+      ],
+      entry_points="""
+      # -*- Entry points: -*-
+      """,
+      message_extractors={'{{project}}': [
+            ('**.py', 'lingua_python', None),
+            ('**.zcml', 'lingua_xml', None),
+            ('**.pt', 'lingua_xml', None),
+            ]},
+      )
