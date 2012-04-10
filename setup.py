@@ -3,6 +3,20 @@ import sys, os
 
 version = '0.1'
 
+install_requires = [
+    'pyramid>=1.3',
+    ]
+
+tests_require = [
+    'WebTest',
+    'mock',
+    'pytest',
+    'pytest-cov',
+    'pytest-xdist',
+    'wsgi_intercept',
+    'zope.testbrowser',
+    ]
+
 setup(name='kotti_addon',
       version=version,
       description="Paster AddOn Template for Kotti",
@@ -17,13 +31,15 @@ setup(name='kotti_addon',
       packages=find_packages(exclude=['ez_setup', 'examples', 'tests']),
       include_package_data=True,
       zip_safe=False,
-      install_requires=[
-          'Kotti>=0.5.2',
-      ],
+      install_requires=install_requires,
+      tests_require=tests_require,
       entry_points="""
             [pyramid.scaffold]
             kotti_addon = kotti_addon.paster_templates:KottiAddonTemplate
       """,
+      extras_require={
+          'testing': tests_require,
+          },
       message_extractors={'kotti_addon': [
             ('**.py', 'lingua_python', None),
             ('**.zcml', 'lingua_xml', None),
