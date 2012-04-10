@@ -10,6 +10,9 @@ addopts =
   {{project}}/
 python_files = test*py
 
+[aliases]
+dev = develop easy_install {{project}}[testing]
+
 [compile_catalog]
 directory = {{project}}/locale
 domain = {{project}}
