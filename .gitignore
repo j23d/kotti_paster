@@ -1,3 +1,12 @@
+kotti_addon.egg-info/
+bin/
+build/
+dist/
+eggs/
+include/
+lib/
+local
 .coverage
-*.egg-info
 *.pyc
+*~
+*.swp
