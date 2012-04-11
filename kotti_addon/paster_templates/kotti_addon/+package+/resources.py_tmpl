@@ -16,7 +16,7 @@ class ContentType(Content):
     
     # add your columns
     id = Column(Integer, ForeignKey('contents.id'), primary_key=True)
-    example_text = Column('example_text' Unicode())
+    example_text = Column('example_text', Unicode(256))
 
     # change the type info to your needs
     type_info = Content.type_info.copy(
