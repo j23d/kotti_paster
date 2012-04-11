@@ -5,6 +5,7 @@ version = '0.1'
 
 install_requires = [
     'pyramid>=1.3',
+    'Paste',
     ]
 
 tests_require = [
