@@ -1,9 +1,7 @@
 kotti_paster
 ============
 
-renamed from kotti_addon - documentation has to be updated
-
-kotti_addon is a package which provides "starter" scaffolding for creating an addon for :mod:`Kotti`.
+kotti_paster is a package which provides "starter" scaffolding for creating an addon for :mod:`Kotti`.
 
 See https://github.com/Pylons/Kotti/blob/master/README.rst for detailed documentation of Kotti.
 
@@ -17,20 +15,20 @@ Create a virturalenv and get the source code from the git repository:
 
   $ mkdir kotti-env && cd kotti-env
   $ virtualenv --no-site-packages . && source ./bin/activate
-  $ git clone git://github.com/j23d/kotti_addon.git
+  $ git clone git://github.com/j23d/kotti_paster.git
 
 Use the "setup.py develop" command of your Python interpreter to install the software:
 
 .. code-block:: text
 
-  $ cd kotti_addon
+  $ cd kotti_paster
   $ python setup.py develop
 
 
 Generating an Addon
 -------------------
 
-The primary job of :mod:`kotti_addon` is to provide a :term:`scaffold` which
+The primary job of :mod:`kotti_paster` is to provide a :term:`scaffold` which
 allows you to easily generate an addon for Kotti. You do this with the "pcreate"
 command in your virtualenv.
 

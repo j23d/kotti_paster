@@ -36,7 +36,7 @@ setup(name='kotti_paster',
       tests_require=tests_require,
       entry_points="""
             [pyramid.scaffold]
-            kotti_paster = kotti_paster.paster_templates:KottiAddonTemplate
+            kotti_addon = kotti_paster.paster_templates:KottiAddonTemplate
       """,
       extras_require={
           'testing': tests_require,
