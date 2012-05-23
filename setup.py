@@ -1,5 +1,4 @@
 from setuptools import setup, find_packages
-import sys, os
 
 version = '0.1'
 
@@ -23,7 +22,7 @@ setup(name='kotti_paster',
       description="Paster AddOn Template for Kotti",
       long_description="""\
 """,
-      classifiers=[], # Get strings from http://pypi.python.org/pypi?%3Aaction=list_classifiers
+      classifiers=[],  # Get strings from http://pypi.python.org/pypi?%3Aaction=list_classifiers
       keywords='kotti addon scaffold',
       author='j23d',
       author_email='j23d@jusid.de',
