@@ -18,6 +18,12 @@ class KottiAddonTemplate(Template):
     ]
 
 
+def is_true(value):
+    if value.lower() in ['y', 'yes', 'true']:
+        return True
+    return False
+
+
 class KottiProjectTemplate(Template):
     _template_dir = 'kotti_project'
     summary = 'A buildout based Kotti project'
@@ -33,5 +39,5 @@ class KottiProjectTemplate(Template):
     def post(self, command, output_dir, vars):
         addon_template = KottiAddonTemplate(vars['project'])
         addon_template.run(command, join(output_dir, 'src', vars['project']), vars)
-        if vars['travis'] != 'y':
+        if not is_true(vars['travis']):
             remove(join(output_dir, '.travis.yml'))
