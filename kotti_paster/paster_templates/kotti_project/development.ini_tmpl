@@ -1,5 +1,9 @@
 [app:main]
 use = egg:${project}
+sqlalchemy.url = sqlite:///%(here)s/${project}.db
+kotti.site_title = ${project}
+kotti.secret = qwerty
+kotti.configurators = ${project}.kotti_configure
 
 pyramid.reload_templates = true
 pyramid.debug_templates = true
@@ -10,14 +14,6 @@ pyramid.default_locale_name = en
 pyramid.includes =
     pyramid_debugtoolbar
     pyramid_tm
-
-sqlalchemy.url = sqlite:///%(here)s/Kotti.db
-#mail.default_sender = yourname@yourhost
-
-kotti.site_title = My Kotti site
-kotti.secret = qwerty
-
-kotti.configurators = ${project}.kotti_configure
 
 [server:main]
 use = egg:waitress#main
