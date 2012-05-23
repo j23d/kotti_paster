@@ -1,4 +1,4 @@
-{{package}} browser tests
+${package} browser tests
 ============================
 
 Setup and Login
@@ -6,7 +6,7 @@ Setup and Login
 
   >>> from kotti import tests
   >>> tools = tests.setUpFunctional(
-  ...     **{'kotti.configurators': '{{package}}.kotti_configure'})
+  ...     **{'kotti.configurators': '${package}.kotti_configure'})
   >>> browser = tools['Browser']()
   >>> ctrl = browser.getControl
 

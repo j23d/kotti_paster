@@ -17,7 +17,7 @@ sqlalchemy.url = sqlite:///%(here)s/Kotti.db
 kotti.site_title = My Kotti site
 kotti.secret = qwerty
 
-kotti.configurators = {{project}}.kotti_configure
+kotti.configurators = ${project}.kotti_configure
 
 [server:main]
 use = egg:waitress#main
