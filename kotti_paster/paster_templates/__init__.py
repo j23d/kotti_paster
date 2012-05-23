@@ -6,6 +6,12 @@ from paste.script.templates import (
 )
 
 
+def is_true(value):
+    if value.lower() in ['y', 'yes', 'true']:
+        return True
+    return False
+
+
 class KottiAddonTemplate(Template):
     _template_dir = 'kotti_addon'
     summary = 'Kotti AddOn'
@@ -16,12 +22,6 @@ class KottiAddonTemplate(Template):
         var('author_email', 'Author email'),
         # __content_type_example (true)
     ]
-
-
-def is_true(value):
-    if value.lower() in ['y', 'yes', 'true']:
-        return True
-    return False
 
 
 class KottiProjectTemplate(Template):
