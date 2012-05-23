@@ -8,8 +8,8 @@ from kotti.views.util import (
     ensure_view_selector,
     template_api,
 )
-from {{package}} import _
-from {{package}}.resources import ContentType
+from ${package} import _
+from ${package}.resources import ContentType
 
 
 class ContentTypeSchema(ContentSchema):
@@ -59,7 +59,7 @@ def includeme_view(config):
         renderer='templates/view.pt',
         )
 
-    config.add_static_view('static-{{package}}', '{{package}}:static')
+    config.add_static_view('static-${package}', '${package}:static')
 
 
 def includeme(config):

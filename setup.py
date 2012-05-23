@@ -4,8 +4,9 @@ import sys, os
 version = '0.1'
 
 install_requires = [
-    'pyramid>=1.3',
-    'Paste',
+    'setuptools',
+    'PasteScript',
+    'Cheetah',
     ]
 
 tests_require = [
@@ -35,8 +36,8 @@ setup(name='kotti_paster',
       install_requires=install_requires,
       tests_require=tests_require,
       entry_points="""
-            [pyramid.scaffold]
-            kotti_paster = kotti_paster.paster_templates:KottiAddonTemplate
+            [paste.paster_create_template]
+            kotti_addon = kotti_paster.paster_templates:KottiAddonTemplate
       """,
       extras_require={
           'testing': tests_require,
