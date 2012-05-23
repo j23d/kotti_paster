@@ -26,6 +26,7 @@ setup(name='kotti_paster',
       entry_points="""
             [paste.paster_create_template]
             kotti_addon = kotti_paster.paster_templates:KottiAddonTemplate
+            kotti_project = kotti_paster.paster_templates:KottiProjectTemplate
       """,
       message_extractors={'kotti_paster': [
             ('**.py', 'lingua_python', None),

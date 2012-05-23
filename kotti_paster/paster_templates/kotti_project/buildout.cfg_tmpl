@@ -1,0 +1,7 @@
+[buildout]
+
+[application]
+recipe = zc.recipe.egg
+eggs = ${project}
+dependent-scripts = true
+interpreter = py
