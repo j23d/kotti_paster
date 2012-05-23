@@ -32,12 +32,14 @@ class KottiProjectTemplate(Template):
     vars = [
         var('author', 'Author name'),
         var('author_email', 'Author email'),
-        var('travis', u'generate a travis configuration file? y/n', default='n')
+        var('travis', u'generate a travis configuration file? y/n', default='n'),
+        var('gitignore', u'generate a .gitignore file? y/n', default='y')
     ]
-    # __gitsupport (false)
 
     def post(self, command, output_dir, vars):
         addon_template = KottiAddonTemplate(vars['project'])
         addon_template.run(command, join(output_dir, 'src', vars['project']), vars)
         if not is_true(vars['travis']):
             remove(join(output_dir, '.travis.yml'))
+        if not is_true(vars['gitignore']):
+            remove(join(output_dir, '.gitignore'))
