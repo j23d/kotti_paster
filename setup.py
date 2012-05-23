@@ -8,16 +8,6 @@ install_requires = [
     'Cheetah',
     ]
 
-tests_require = [
-    'WebTest',
-    'mock',
-    'pytest',
-    'pytest-cov',
-    'pytest-xdist',
-    'wsgi_intercept',
-    'zope.testbrowser',
-    ]
-
 setup(name='kotti_paster',
       version=version,
       description="Paster AddOn Template for Kotti",
@@ -33,14 +23,10 @@ setup(name='kotti_paster',
       include_package_data=True,
       zip_safe=False,
       install_requires=install_requires,
-      tests_require=tests_require,
       entry_points="""
             [paste.paster_create_template]
             kotti_addon = kotti_paster.paster_templates:KottiAddonTemplate
       """,
-      extras_require={
-          'testing': tests_require,
-          },
       message_extractors={'kotti_paster': [
             ('**.py', 'lingua_python', None),
             ('**.zcml', 'lingua_xml', None),
