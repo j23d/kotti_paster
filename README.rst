@@ -1,5 +1,7 @@
-kotti_addon
-===========
+kotti_paster
+============
+
+renamed from kotti_addon - documentation has to be updated
 
 kotti_addon is a package which provides "starter" scaffolding for creating an addon for :mod:`Kotti`.
 

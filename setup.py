@@ -18,7 +18,7 @@ tests_require = [
     'zope.testbrowser',
     ]
 
-setup(name='kotti_addon',
+setup(name='kotti_paster',
       version=version,
       description="Paster AddOn Template for Kotti",
       long_description="""\
@@ -36,12 +36,12 @@ setup(name='kotti_addon',
       tests_require=tests_require,
       entry_points="""
             [pyramid.scaffold]
-            kotti_addon = kotti_addon.paster_templates:KottiAddonTemplate
+            kotti_paster = kotti_paster.paster_templates:KottiAddonTemplate
       """,
       extras_require={
           'testing': tests_require,
           },
-      message_extractors={'kotti_addon': [
+      message_extractors={'kotti_paster': [
             ('**.py', 'lingua_python', None),
             ('**.zcml', 'lingua_xml', None),
             ('**.pt', 'lingua_xml', None),
