@@ -1,3 +1,4 @@
+from os import remove
 from os.path import join
 from paste.script.templates import (
     Template,
@@ -25,10 +26,12 @@ class KottiProjectTemplate(Template):
     vars = [
         var('author', 'Author name'),
         var('author_email', 'Author email'),
-        var('travis', u'generate travis configuration file', default=False)
+        var('travis', u'generate a travis configuration file? y/n', default='n')
     ]
     # __gitsupport (false)
 
     def post(self, command, output_dir, vars):
         addon_template = KottiAddonTemplate(vars['project'])
         addon_template.run(command, join(output_dir, 'src', vars['project']), vars)
+        if vars['travis'] != 'y':
+            remove(join(output_dir, '.travis.yml'))
