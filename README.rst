@@ -7,6 +7,8 @@ See http://kotti.readthedocs.org/en/latest/index.html for detailed documentation
 Installation
 ------------
 
+You just install the package from PyPi with easy_install. This will install PasteScript and Cheetah. So you may want to create a new virtualenv to install it there.
+
 .. code-block:: text
 
   $ easy_install kotti_paster
