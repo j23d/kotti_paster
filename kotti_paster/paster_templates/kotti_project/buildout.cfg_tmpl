@@ -1,4 +1,14 @@
 [buildout]
+extensions =
+    mr.developer
+    buildout.dumppickedversions
+parts =
+    application
+auto-checkout =
+    ${project}
+
+[sources]
+${project} = fs ${project}
 
 [application]
 recipe = zc.recipe.egg

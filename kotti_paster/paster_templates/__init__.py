@@ -1,3 +1,4 @@
+from os.path import join
 from paste.script.templates import (
     Template,
     var,
@@ -27,3 +28,7 @@ class KottiProjectTemplate(Template):
         var('travis', u'generate travis configuration file', default=False)
     ]
     # __gitsupport (false)
+
+    def post(self, command, output_dir, vars):
+        addon_template = KottiAddonTemplate(vars['project'])
+        addon_template.run(command, join(output_dir, 'src', vars['project']), vars)

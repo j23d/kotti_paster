@@ -1,5 +1,5 @@
 [app:main]
-use = egg:kotti
+use = egg:${project}
 
 pyramid.reload_templates = true
 pyramid.debug_templates = true
