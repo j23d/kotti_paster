@@ -34,6 +34,9 @@ class KottiProjectTemplate(Template):
         var('author_email', 'Author email'),
         var('travis', u'generate a travis configuration file? y/n', default='n'),
         var('gitignore', u'generate a .gitignore file? y/n', default='y')
+        # codeintel
+        # omelette
+        # supervisor
     ]
 
     def post(self, command, output_dir, vars):
