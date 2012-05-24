@@ -80,10 +80,3 @@ kotti.configurators =
 
 The addon contains example code - change it and add your fancy stuff. See the Kotti
 documentation for further informations http://kotti.readthedocs.org/en/latest/index.html.
-
-
-TODO
-====
-
-- add content type - or not (default yes)
-- add slot example or not (default no)
