@@ -1,0 +1,5 @@
+TODO's
+======
+
+- add content type or not (default yes)
+- add slot example or not (default no)
