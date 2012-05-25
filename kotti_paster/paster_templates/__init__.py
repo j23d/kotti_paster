@@ -1,7 +1,3 @@
-from os import (
-    remove,
-)
-from shutil import rmtree
 from os.path import join
 from paste.script.templates import (
     Template,
@@ -23,26 +19,8 @@ class KottiAddonTemplate(Template):
     vars = [
         var('author', 'Author name'),
         var('author_email', 'Author email'),
-        var('content_type', 'include a Content Type example y/n', default='y'),
+        # __content_type_example (true)
     ]
-
-    def post(self, command, output_dir, vars):
-        project_dir = join(output_dir, vars['project'])
-        test_dir = join(project_dir, 'tests')
-
-        # handle content type
-        if not is_true(vars.get('content_type', '')):
-            remove(join(project_dir, 'resources.py'))
-            remove(join(project_dir, 'views.py'))
-            rmtree(join(project_dir, 'templates'), ignore_errors=True)
-        else:
-            sfd = open(join(test_dir, 'test_content_type.rst'), 'r')
-            data = sfd.read()
-            sfd.close()
-            dfd = open(join(test_dir, 'test_browser.rst'), 'a')
-            dfd.write(data)
-            dfd.close()
-        remove(join(test_dir, 'test_content_type.rst'))
 
 
 class KottiTemplateMixin(object):
