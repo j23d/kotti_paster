@@ -1,5 +1,3 @@
-import os
-import subprocess
 import httplib
 from kotti_paster.conftest import paster
 
@@ -7,13 +5,9 @@ from kotti_paster.conftest import paster
 @paster('kotti_addon', 'werkpalast', '--no-interactive')
 def test_kotti_addon(pasterdir, pytest_runner):
     tempdir, cwd, project = pasterdir
-    # run the tests:
-    proc = subprocess.Popen([os.path.join(cwd, 'bin', 'test')],
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE)
-    output = proc.stdout.read()
+    output = pytest_runner.stdout.read()
     assert '100%' in output
-    proc.terminate()
+    pytest_runner.terminate()
 
 
 @paster('kotti_project', 'werkpalast', '--no-interactive')

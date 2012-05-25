@@ -80,3 +80,7 @@ eggs =
     """ % project)
     cfg.close()
     subprocess.check_call([os.path.join(home, 'bin', 'buildout'), '-c', 'testing.cfg'])
+    # run the tests:
+    return subprocess.Popen([os.path.join(cwd, 'bin', 'test')],
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE)
