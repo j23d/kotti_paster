@@ -5,7 +5,6 @@ from kotti_paster.conftest import paster
 
 @paster('kotti_addon', 'werkpalast', '--no-interactive')
 def test_kotti_addon(pasterdir, pytest_runner):
-    tempdir, cwd, project = pasterdir
     output = pytest_runner.stdout.read()
     assert '100%' in output
     pytest_runner.terminate()
