@@ -4,16 +4,14 @@ import subprocess
 import time
 import httplib
 
-home = pkg_resources.get_distribution('kotti_paster').location
+from kotti_paster.conftest import paster, home
 
 
-def test_kotti_addon(tempdir):
-    tmpl_name = 'kotti_addon'
-    project = 'werkpalast'
-    # create package
-    subprocess.check_call(['%s/bin/paster' % home, 'create', '-t', tmpl_name, project, '--no-interactive'])
+@paster('kotti_addon', 'werkpalast', '--no-interactive')
+def test_kotti_addon(pasterdir):
+    tempdir, cwd, project = pasterdir
     # create a pytest runner for it via buildout
-    cfg = open(os.path.join(project, 'testing.cfg'), 'w')
+    cfg = open(os.path.join(cwd, 'testing.cfg'), 'w')
     cfg.writelines("""[buildout]
 parts = pytest
 develop = .
@@ -26,11 +24,11 @@ eggs =
     pytest
     """ % project)
     cfg.close()
-    os.chdir(project)
     subprocess.check_call([os.path.join(home, 'bin', 'buildout'), '-c', 'testing.cfg'])
     # run the tests:
-    py_test = os.path.join(tempdir, project, 'bin', 'test')
-    proc = subprocess.Popen([py_test, ], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    proc = subprocess.Popen([os.path.join(cwd, 'bin', 'test')],
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE)
     output = proc.stdout.read()
     if not '100%' in output:
         raise AssertionError
