@@ -12,6 +12,7 @@ tests_require = [
     'virtualenv',
     'PasteScript',
     'Cheetah',
+    'pytest',
     ]
 
 setup(name='kotti_paster',
