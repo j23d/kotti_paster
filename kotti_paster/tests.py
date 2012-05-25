@@ -30,8 +30,7 @@ eggs =
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE)
     output = proc.stdout.read()
-    if not '100%' in output:
-        raise AssertionError
+    assert '100%' in output
     proc.terminate()
 
 
