@@ -45,10 +45,26 @@ class KottiAddonTemplate(Template):
         remove(join(test_dir, 'test_content_type.rst'))
 
 
-class KottiProjectTemplate(Template):
-    _template_dir = 'kotti_project'
-    summary = 'A buildout based Kotti project'
+class KottiTemplateMixin(object):
+
     use_cheetah = True
+
+    @property
+    def _template_dir(self):
+        return 'kotti_project/%s' % self.__class__.__name__.lower()
+
+
+class Git(KottiTemplateMixin, Template):
+    summary = u'generate gitignore file'
+
+
+templates = dict(
+    gitignore=Git,
+)
+
+
+class Buildout(KottiTemplateMixin, Template):
+    summary = 'A buildout based Kotti project'
 
     vars = [
         var('author', 'Author name'),
@@ -63,7 +79,7 @@ class KottiProjectTemplate(Template):
     def post(self, command, output_dir, vars):
         addon_template = KottiAddonTemplate(vars['project'])
         addon_template.run(command, join(output_dir, 'src', vars['project']), vars)
-        if not is_true(vars['travis']):
-            remove(join(output_dir, '.travis.yml'))
-        if not is_true(vars['gitignore']):
-            remove(join(output_dir, '.gitignore'))
+        for boolflag in ['gitignore']:
+            if is_true(vars.get(boolflag, False)):
+                template = templates[boolflag](boolflag)
+                template.run(command, output_dir, vars)
