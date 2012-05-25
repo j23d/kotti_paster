@@ -10,31 +10,34 @@ import httplib
 
 class TemplateTest(object):
 
-    def make_venv(self, directory):  # pragma: no cover
-        import virtualenv
-        from virtualenv import Logger
-        logger = Logger([(Logger.level_for_integer(2), sys.stdout)])
-        virtualenv.logger = logger
-        virtualenv.create_environment(directory,
-                                      site_packages=False,
-                                      clear=False,
-                                      unzip_setuptools=True)
-
-    def kotti_addon(self, tmpl_name='kotti_addon'):  # pragma: no cover
+    def kotti_addon(self, tmpl_name='kotti_addon', project='werkpalast'):  # pragma: no cover
         try:
             self.old_cwd = os.getcwd()
             self.directory = tempfile.mkdtemp()
-            self.make_venv(self.directory)
-            os.chdir(pkg_resources.get_distribution('kotti_paster').location)
-            subprocess.check_call(
-                [os.path.join(self.directory, 'bin', 'python'),
-                 'setup.py', 'dev'])
             os.chdir(self.directory)
-            subprocess.check_call(['bin/paster', 'create', '-t', tmpl_name, 'test', 'author=johndoe', 'author_email=john@doe.org'])
-            py = os.path.join(self.directory, 'bin', 'python')
-            os.chdir('test')
-            subprocess.check_call([py, 'setup.py', 'dev'])
-            py_test = os.path.join(self.directory, 'bin', 'py.test')
+            self.home = pkg_resources.get_distribution('kotti_paster').location
+            # create package
+            subprocess.check_call(['%s/bin/paster' % self.home, 'create', '-t', tmpl_name, project, '--no-interactive'])
+            # create a pytest runner for it via buildout
+            cfg = open(os.path.join(project, 'testing.cfg'), 'w')
+            cfg.writelines("""
+[buildout]
+parts =
+    pytest
+develop = .
+
+[pytest]
+recipe = z3c.recipe.scripts
+scripts = py.test=test
+eggs =
+    %s [testing]
+    pytest
+                """ % project)
+            cfg.close()
+            os.chdir(project)
+            subprocess.check_call([os.path.join(self.home, 'bin', 'buildout'), '-c', 'testing.cfg'])
+            # run the tests:
+            py_test = os.path.join(self.directory, project, 'bin', 'test')
             proc = subprocess.Popen([py_test, ], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
             output = proc.stdout.read()
             if not '100%' in output:
@@ -84,4 +87,4 @@ class TemplateTest(object):
 def test_paster_templates():
     test = TemplateTest()
     test.kotti_addon()
-    test.kotti_project()
+    # test.kotti_project()
