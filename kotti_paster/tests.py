@@ -32,3 +32,15 @@ def test_kotti_project_gitignore(pasterdir):
 def test_kotti_project_no_gitignore(pasterdir):
     tempdir, cwd, project = pasterdir
     assert '.gitignore' not in os.listdir(cwd)
+
+
+@paster('kotti_project', 'werkpalast', 'travis=yes --no-interactive')
+def test_kotti_project_travis(pasterdir):
+    tempdir, cwd, project = pasterdir
+    assert '.travis.yml' in os.listdir(cwd)
+
+
+@paster('kotti_project', 'werkpalast', 'travis=no --no-interactive')
+def test_kotti_project_no_travis(pasterdir):
+    tempdir, cwd, project = pasterdir
+    assert '.travis.yml' not in os.listdir(cwd)

@@ -58,8 +58,13 @@ class Git(KottiTemplateMixin, Template):
     summary = u'generate gitignore file'
 
 
+class Travis(KottiTemplateMixin, Template):
+    summary = u'generate a travis file'
+
+
 templates = dict(
     gitignore=Git,
+    travis=Travis,
 )
 
 
@@ -79,7 +84,7 @@ class Buildout(KottiTemplateMixin, Template):
     def post(self, command, output_dir, vars):
         addon_template = KottiAddonTemplate(vars['project'])
         addon_template.run(command, join(output_dir, 'src', vars['project']), vars)
-        for boolflag in ['gitignore']:
+        for boolflag in ['gitignore', 'travis']:
             if is_true(vars.get(boolflag, False)):
                 template = templates[boolflag](boolflag)
                 template.run(command, output_dir, vars)
