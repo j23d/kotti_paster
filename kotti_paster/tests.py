@@ -1,7 +1,6 @@
 import os
 import subprocess
 import httplib
-from mr.laforge import shutdown
 from kotti_paster.conftest import paster, home
 
 
@@ -35,13 +34,10 @@ eggs =
 @paster('kotti_project', 'werkpalast', '--no-interactive')
 def test_kotti_project(pasterdir, application):
     tempdir, cwd, project = pasterdir
-    try:
-        conn = httplib.HTTPConnection(application)
-        conn.request('GET', '/')
-        resp = conn.getresponse()
-        assert resp.status == 200
-        data = resp.read()
-        toolbarchunk = b'<div id="pDebug"'
-        assert toolbarchunk in data
-    finally:
-        shutdown()
+    conn = httplib.HTTPConnection(application)
+    conn.request('GET', '/')
+    resp = conn.getresponse()
+    assert resp.status == 200
+    data = resp.read()
+    toolbarchunk = b'<div id="pDebug"'
+    assert toolbarchunk in data
