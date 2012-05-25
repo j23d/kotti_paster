@@ -1,12 +1,14 @@
 kotti_paster.egg-info/
 bin/
 build/
+develop-eggs/
 dist/
 eggs/
 include/
 lib/
 local
 .coverage
+.installed.cfg
 *.pyc
 *~
 *.swp
