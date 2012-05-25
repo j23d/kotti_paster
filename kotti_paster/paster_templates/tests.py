@@ -5,18 +5,13 @@ import shutil
 import subprocess
 import tempfile
 import time
-
-try:
-    import httplib
-except ImportError:  # pragma: no cover
-    import http.client as httplib
+import httplib
 
 
 class TemplateTest(object):
 
     def make_venv(self, directory):  # pragma: no cover
         import virtualenv
-        import sys
         from virtualenv import Logger
         logger = Logger([(Logger.level_for_integer(2), sys.stdout)])
         virtualenv.logger = logger
