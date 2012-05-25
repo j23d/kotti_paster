@@ -23,7 +23,7 @@ class KottiAddonTemplate(Template):
     ]
 
 
-class KottiTemplateMixin(object):
+class KottiTemplateBase(Template):
 
     use_cheetah = True
 
@@ -32,11 +32,11 @@ class KottiTemplateMixin(object):
         return 'kotti_project/%s' % self.__class__.__name__.lower()
 
 
-class Git(KottiTemplateMixin, Template):
+class Git(KottiTemplateBase):
     summary = u'generate gitignore file'
 
 
-class Travis(KottiTemplateMixin, Template):
+class Travis(KottiTemplateBase):
     summary = u'generate a travis file'
 
 
@@ -46,7 +46,7 @@ templates = dict(
 )
 
 
-class Buildout(KottiTemplateMixin, Template):
+class Buildout(KottiTemplateBase):
     summary = 'A buildout based Kotti project'
 
     vars = [
