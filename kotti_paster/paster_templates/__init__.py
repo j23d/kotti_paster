@@ -31,7 +31,7 @@ class KottiAddonTemplate(Template):
         test_dir = join(project_dir, 'tests')
 
         # handle content type
-        if not is_true(vars['content_type']):
+        if not is_true(vars.get('content_type', '')):
             remove(join(project_dir, 'resources.py'))
             remove(join(project_dir, 'views.py'))
             rmtree(join(project_dir, 'templates'), ignore_errors=True)
