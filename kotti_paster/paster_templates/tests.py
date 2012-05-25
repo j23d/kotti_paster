@@ -11,8 +11,6 @@ try:
 except ImportError:  # pragma: no cover
     import http.client as httplib
 
-from pyramid.compat import PY3
-
 
 class TemplateTest(object):
 
@@ -25,8 +23,7 @@ class TemplateTest(object):
         virtualenv.create_environment(directory,
                                       site_packages=False,
                                       clear=False,
-                                      unzip_setuptools=True,
-                                      use_distribute=PY3)
+                                      unzip_setuptools=True)
 
     def kotti_addon(self, tmpl_name='kotti_addon'):  # pragma: no cover
         try:
