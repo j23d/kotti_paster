@@ -13,6 +13,7 @@ tests_require = [
     'PasteScript',
     'Cheetah',
     'pytest',
+    'mr.laforge',
     ]
 
 setup(name='kotti_paster',

@@ -4,6 +4,7 @@ import shutil
 import subprocess
 import tempfile
 from py.test import mark
+from mr.laforge import up, waitforports
 
 paster = mark.paster
 
@@ -30,3 +31,24 @@ def pytest_funcarg__pasterdir(request):
     return request.cached_setup(setup=setup,
         teardown=teardown,
         scope='function')
+
+
+def pytest_funcarg__application(request):
+    tempdir, cwd, project = request._funcargs['pasterdir']
+    cfg = open(os.path.join(cwd, 'supervisor.cfg'), 'w')
+    cfg.writelines("""
+[buildout]
+extends = buildout.cfg
+parts += supervisor
+
+[supervisor]
+recipe = collective.recipe.supervisor
+supervisord-conf=${buildout:directory}/supervisord.conf
+programs =
+    10 app %(cwd)s/bin/pserve [%(cwd)s/development.ini]
+""" % dict(cwd=cwd))
+    cfg.close()
+    subprocess.check_call([os.path.join(home, 'bin', 'buildout'), '-c', 'supervisor.cfg'])
+    up('app')
+    waitforports(6543)
+    return u'localhost:6543'

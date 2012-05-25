@@ -1,9 +1,7 @@
 import os
-import pkg_resources
 import subprocess
-import time
 import httplib
-
+from mr.laforge import shutdown
 from kotti_paster.conftest import paster, home
 
 
@@ -34,32 +32,16 @@ eggs =
     proc.terminate()
 
 
-def kotti_project(tempdir):
-    tmpl_name = 'kotti_project'
-    os.chdir(pkg_resources.get_distribution('kotti_paster').location)
-    subprocess.check_call(
-        [os.path.join(tempdir, 'bin', 'python'),
-         'setup.py', 'dev'])
-    os.chdir(tempdir)
-    subprocess.check_call(['bin/paster', 'create', '-t', tmpl_name, 'test', '--no-interactive', 'author=johndoe', 'author_email=john@doe.org'])
-    py = os.path.join(tempdir, 'bin', 'python')
-    os.chdir('test')
-    subprocess.check_call([py, 'bootstrap.py'])
-    subprocess.check_call(['bin/buildout'])
-    pserve = os.path.join(tempdir, 'test', 'bin', 'pserve')
-    ininame = 'development.ini'
-    proc = subprocess.Popen([pserve, ininame])
+@paster('kotti_project', 'werkpalast', '--no-interactive')
+def test_kotti_project(pasterdir, application):
+    tempdir, cwd, project = pasterdir
     try:
-        time.sleep(5)
-        proc.poll()
-        if proc.returncode is not None:
-            raise RuntimeError('%s didnt start' % ininame)
-        conn = httplib.HTTPConnection('localhost:6543')
+        conn = httplib.HTTPConnection(application)
         conn.request('GET', '/')
         resp = conn.getresponse()
-        assert resp.status == 200, ininame
+        assert resp.status == 200
         data = resp.read()
         toolbarchunk = b'<div id="pDebug"'
-        assert toolbarchunk in data, ininame
+        assert toolbarchunk in data
     finally:
-        proc.terminate()
+        shutdown()
