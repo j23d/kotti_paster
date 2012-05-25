@@ -61,3 +61,22 @@ programs =
     return request.cached_setup(setup=setup,
         teardown=teardown,
         scope='function')
+
+
+def pytest_funcarg__pytest_runner(request):
+    # create a pytest runner via buildout
+    tempdir, cwd, project = request._funcargs['pasterdir']
+    cfg = open(os.path.join(cwd, 'testing.cfg'), 'w')
+    cfg.writelines("""[buildout]
+parts = pytest
+develop = .
+
+[pytest]
+recipe = z3c.recipe.scripts
+scripts = py.test=test
+eggs =
+    %s [testing]
+    pytest
+    """ % project)
+    cfg.close()
+    subprocess.check_call([os.path.join(home, 'bin', 'buildout'), '-c', 'testing.cfg'])

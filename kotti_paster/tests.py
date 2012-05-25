@@ -1,27 +1,12 @@
 import os
 import subprocess
 import httplib
-from kotti_paster.conftest import paster, home
+from kotti_paster.conftest import paster
 
 
 @paster('kotti_addon', 'werkpalast', '--no-interactive')
-def test_kotti_addon(pasterdir):
+def test_kotti_addon(pasterdir, pytest_runner):
     tempdir, cwd, project = pasterdir
-    # create a pytest runner for it via buildout
-    cfg = open(os.path.join(cwd, 'testing.cfg'), 'w')
-    cfg.writelines("""[buildout]
-parts = pytest
-develop = .
-
-[pytest]
-recipe = z3c.recipe.scripts
-scripts = py.test=test
-eggs =
-    %s [testing]
-    pytest
-    """ % project)
-    cfg.close()
-    subprocess.check_call([os.path.join(home, 'bin', 'buildout'), '-c', 'testing.cfg'])
     # run the tests:
     proc = subprocess.Popen([os.path.join(cwd, 'bin', 'test')],
         stdout=subprocess.PIPE,
