@@ -64,10 +64,11 @@ programs =
 
 
 def pytest_funcarg__pytest_runner(request):
-    # create a pytest runner via buildout
-    tempdir, cwd, project = request._funcargs['pasterdir']
-    cfg = open(os.path.join(cwd, 'testing.cfg'), 'w')
-    cfg.writelines("""[buildout]
+    def setup():
+        # create a pytest runner via buildout
+        tempdir, cwd, project = request._funcargs['pasterdir']
+        cfg = open(os.path.join(cwd, 'testing.cfg'), 'w')
+        cfg.writelines("""[buildout]
 parts = pytest
 develop = .
 
@@ -77,10 +78,17 @@ scripts = py.test=test
 eggs =
     %s [testing]
     pytest
-    """ % project)
-    cfg.close()
-    subprocess.check_call([os.path.join(home, 'bin', 'buildout'), '-c', 'testing.cfg'])
-    # run the tests:
-    return subprocess.Popen([os.path.join(cwd, 'bin', 'test')],
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE)
+        """ % project)
+        cfg.close()
+        subprocess.check_call([os.path.join(home, 'bin', 'buildout'), '-c', 'testing.cfg'])
+        # run the tests:
+        return subprocess.Popen([os.path.join(cwd, 'bin', 'test')],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE)
+
+    def teardown(pytest_runner):
+        pytest_runner.terminate()
+
+    return request.cached_setup(setup=setup,
+        teardown=teardown,
+        scope='function')
