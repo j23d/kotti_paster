@@ -3,9 +3,21 @@ import httplib
 from kotti_paster.conftest import paster
 
 
-@paster('kotti_addon', 'werkpalast', '--no-interactive')
-def test_kotti_addon(pasterdir, pytest_runner):
+@paster('kotti_addon', 'werkpalast', 'content_type=yes --no-interactive')
+def test_kotti_addon_content_type(pasterdir, pytest_runner):
     output = pytest_runner.stdout.read()
+    assert 'werkpalast/tests/test_browser_minimal.rst' in output
+    assert 'werkpalast/tests/test_functional_content_type' in output
+    assert '9 passed' in output
+    assert '100%' in output
+
+
+@paster('kotti_addon', 'werkpalast', 'content_type=no --no-interactive')
+def test_kotti_addon_no_content_type(pasterdir, pytest_runner):
+    output = pytest_runner.stdout.read()
+    assert 'werkpalast/tests/test_browser_minimal.rst' in output
+    assert 'werkpalast/tests/test_functional_content_type' not in output
+    assert '3 passed' in output
     assert '100%' in output
 
 

@@ -1,0 +1,6 @@
+from pyramid.i18n import TranslationStringFactory
+_ = TranslationStringFactory('${package}')
+
+
+def kotti_configure(settings):
+    pass
