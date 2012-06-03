@@ -6,4 +6,4 @@ env:
   - KOTTI_TEST_DB_STRING=sqlite://
 install:
   - python setup.py dev
-script: py.test
+script: test
