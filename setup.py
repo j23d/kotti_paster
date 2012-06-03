@@ -34,7 +34,7 @@ setup(name='kotti_paster',
       tests_require=tests_require,
       entry_points="""
             [paste.paster_create_template]
-            kotti_addon = kotti_paster.paster_templates:KottiAddonTemplate
+            kotti_addon = kotti_paster.paster_templates:Addon
             kotti_project = kotti_paster.paster_templates:Buildout
       """,
       extras_require={
