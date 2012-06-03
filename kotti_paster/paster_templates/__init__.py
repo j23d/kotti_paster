@@ -1,27 +1,12 @@
+import copy
 from os.path import join
-from paste.script.templates import (
-    Template,
-    var,
-)
-from types import BooleanType
+from templer.core.vars import BooleanVar
+from templer.core import BasicNamespace
 
 
-def is_true(value):
-    """Determine if the given value is true. This should be changed
-    to use the templer.core variables."""
-    # Check if we already have a boolean here. This can happen because
-    # we call a template in the post of another template, where the
-    # variables are already set.
-    if type(value) == BooleanType:
-        return value
-    if value.lower() in ['y', 'yes', 'true']:
-        return True
-    return False
-
-
-class KottiTemplateBase(Template):
-
-    use_cheetah = True
+class KottiTemplateBase(BasicNamespace):
+    # for kotti we don't use a dotted namespaces
+    dots = 0
 
 
 class KottiProjectBase(KottiTemplateBase):
@@ -60,15 +45,17 @@ templates = dict(
 class Addon(KottiAddonBase):
     summary = 'Kotti AddOn base files'
 
-    vars = [
-        var('author', 'Author name'),
-        var('author_email', 'Author email'),
-        var('content_type', u'Add content type example to the add on? y/n', default='y'),
-    ]
+    content_type = BooleanVar('content_type',
+        title='Content type example?',
+        description='Add content type example to the add-on?',
+        default=True)
+
+    vars = copy.deepcopy(BasicNamespace.vars)
+    vars.append(content_type)
 
     def post(self, command, output_dir, vars):
         for boolflag in ['content_type', ]:
-            if is_true(vars.get(boolflag, False)):
+            if getattr(self, boolflag).validate(vars.get(boolflag, 0)):
                 template = templates[boolflag](boolflag)
                 template.run(command, output_dir, vars)
 
@@ -76,20 +63,27 @@ class Addon(KottiAddonBase):
 class Buildout(KottiProjectBase):
     summary = 'A buildout based Kotti project'
 
-    vars = [
-        var('author', 'Author name'),
-        var('author_email', 'Author email'),
-        var('travis', u'generate a travis configuration file? y/n', default='n'),
-        var('gitignore', u'generate a .gitignore file? y/n', default='y')
-        # codeintel
-        # omelette
-        # supervisor
-    ]
+    travis = BooleanVar('travis',
+        title='Generate a travis configuration file?',
+        description='Add a travis configuration file to the buildout?',
+        default=False)
+
+    gitignore = BooleanVar('gitignore',
+        title='Generate a .gitignore file?',
+        description='Add a .gitignore file to the buildout?',
+        default=True)
+
+    vars = copy.deepcopy(KottiProjectBase.vars)
+    vars.extend([travis, gitignore, ])
+
+    # codeintel
+    # omelette
+    # supervisor
 
     def post(self, command, output_dir, vars):
         addon_template = Addon(vars['project'])
         addon_template.run(command, join(output_dir, 'src', vars['project']), vars)
         for boolflag in ['gitignore', 'travis']:
-            if is_true(vars.get(boolflag, False)):
+            if getattr(self, boolflag).validate(vars.get(boolflag, 0)):
                 template = templates[boolflag](boolflag)
                 template.run(command, output_dir, vars)

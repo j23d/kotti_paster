@@ -6,6 +6,7 @@ install_requires = [
     'setuptools',
     'PasteScript',
     'Cheetah',
+    'templer.core',
     ]
 
 tests_require = [
