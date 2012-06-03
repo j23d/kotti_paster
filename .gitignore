@@ -8,6 +8,7 @@ include/
 lib/
 parts/
 local
+.codeintel/
 .coverage
 .installed.cfg
 *.pyc
