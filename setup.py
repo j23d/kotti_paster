@@ -1,6 +1,5 @@
+import os
 from setuptools import setup, find_packages
-
-version = '0.1'
 
 install_requires = [
     'setuptools',
@@ -17,18 +16,25 @@ tests_require = [
     'mr.laforge',
     ]
 
+here = os.path.abspath(os.path.dirname(__file__))
+README = open(os.path.join(here, 'README.rst')).read()
+CHANGES = open(os.path.join(here, 'CHANGES.txt')).read()
+
 setup(name='kotti_paster',
-      version=version,
+      version='0.1',
       description="Paster AddOn Template for Kotti",
-      long_description="""\
-""",
-      classifiers=[],  # Get strings from http://pypi.python.org/pypi?%3Aaction=list_classifiers
+      long_description=README + '\n\n' + CHANGES,
+      classifiers=[
+        "Programming Language :: Python",
+        "Framework :: Buildout",
+        "License :: Repoze Public License",
+        ],
       keywords='kotti addon scaffold',
-      author='j23d',
+      author='Marco Scheidhuber and Tom Lazar',
       author_email='j23d@jusid.de',
-      url='jusid.de',
-      license='GPL',
-      packages=find_packages(exclude=['ez_setup', 'examples', 'tests']),
+      url='http://pypi.python.org/pypi/kotti_paster/',
+      license='BSD-derived (http://www.repoze.org/LICENSE.txt)',
+      packages=find_packages(),
       include_package_data=True,
       zip_safe=False,
       install_requires=install_requires,
