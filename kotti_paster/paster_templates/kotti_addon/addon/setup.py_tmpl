@@ -1,5 +1,9 @@
-from setuptools import setup, find_packages
-import sys, os
+import os
+import sys
+from setuptools import (
+    setup,
+    find_packages,
+)
 
 version = '0.1'
 project = '${project}'
@@ -14,17 +18,24 @@ tests_require = [
     'zope.testbrowser',
     ]
 
+here = os.path.abspath(os.path.dirname(__file__))
+README = open(os.path.join(here, 'README.rst')).read()
+CHANGES = open(os.path.join(here, 'CHANGES.txt')).read()
+
 setup(name=project,
       version=version,
-      description="",
-      long_description="""\
-""",
-      classifiers=[], # Get strings from http://pypi.python.org/pypi?%3Aaction=list_classifiers
-      keywords='',
+      description="AddOn for Kotti",
+      long_description=README + '\n\n' + CHANGES,
+      classifiers=[
+        "Programming Language :: Python",
+        "Framework :: Pyramid",
+        "License :: Repoze Public License",
+        ],
+      keywords='kotti addon',
       author='${author}',
       author_email='${author_email}',
       url='',
-      license='GPL',
+      license='BSD-derived (http://www.repoze.org/LICENSE.txt)',
       packages=find_packages(exclude=['ez_setup', 'examples', 'tests']),
       include_package_data=True,
       zip_safe=False,
