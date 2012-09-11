@@ -1,0 +1,4 @@
+[codeintel]
+recipe = corneti.recipes.codeintel
+eggs = ${application:eggs}
+extra-paths = ${omelette:location}

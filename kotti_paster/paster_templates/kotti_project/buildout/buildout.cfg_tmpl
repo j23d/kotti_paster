@@ -2,8 +2,10 @@
 extensions =
     mr.developer
     buildout.dumppickedversions
+
 parts =
     application
+
 auto-checkout =
     ${project}
 

@@ -1,0 +1,5 @@
+[supervisor]
+recipe = collective.recipe.supervisor
+supervisord-conf=${buildout:directory}/supervisord.conf
+programs =
+    10 app %(cwd)s/bin/pserve [%(cwd)s/development.ini]
