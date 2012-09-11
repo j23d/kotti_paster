@@ -21,6 +21,16 @@ def test_kotti_addon_no_content_type(pasterdir, pytest_runner):
     assert '100%' in output
 
 
+@paster('kotti_addon', 'werkpalast', '--no-interactive')
+def test_kotti_addon_fanstatic(pasterdir):
+    tempdir, cwd, project = pasterdir
+    setup_file = open('%s/setup.py' % cwd).read()
+    search_string = '[fanstatic.libraries]\n      '\
+                    '%(project)s = %(project)s:library' % {'project': project}
+    assert search_string in setup_file
+    assert 'static.py' in os.listdir(cwd + '/' + project)
+
+
 @paster('kotti_project', 'werkpalast', '--no-interactive')
 def test_kotti_project(pasterdir, application):
     tempdir, cwd, project = pasterdir
