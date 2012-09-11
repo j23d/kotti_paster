@@ -1,0 +1,11 @@
+from fanstatic import (
+    Library,
+    Resource,
+    Group,
+    )
+from kotti.static import view_needed
+
+
+library = Library("${project}", "static")
+${project}_css = Resource(library, "style.css")
+view_needed.add(Group([${project}_css, ]))
