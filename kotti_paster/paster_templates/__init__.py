@@ -1,7 +1,8 @@
 import copy
 from os.path import join
-from templer.core.vars import BooleanVar
+import subprocess
 from templer.core import BasicNamespace
+from templer.core.vars import BooleanVar
 
 
 class KottiTemplateBase(BasicNamespace):
@@ -65,7 +66,22 @@ class Addon(KottiAddonBase):
         description='Add content type example to the add-on?',
         default=True)
 
+    name = subprocess.Popen("git config --get user.name",
+            stdout=subprocess.PIPE, shell=True).stdout.read().strip()
+    email = subprocess.Popen("git config --get user.email",
+            stdout=subprocess.PIPE, shell=True).stdout.read().strip()
+    defaults = {
+        'license_name': 'BSD',
+        'keywords': 'kotti addon',
+        'url': 'http://pypi.python.org/pypi/',
+        'author': name,
+        'author_email': email,
+    }
+
     vars = copy.deepcopy(BasicNamespace.vars)
+    for var in vars:
+        if var.name in defaults:
+            var.default = defaults[var.name]
     vars.append(content_type)
 
     def post(self, command, output_dir, vars):
