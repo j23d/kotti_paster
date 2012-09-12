@@ -8,7 +8,7 @@ def test_kotti_addon_content_type(pasterdir, pytest_runner):
     output = pytest_runner.stdout.read()
     assert 'werkpalast/tests/test_browser_minimal.rst' in output
     assert 'werkpalast/tests/test_functional_content_type' in output
-    assert '9 passed' in output
+    assert '10 passed' in output
     assert '100%' in output
 
 
@@ -17,7 +17,7 @@ def test_kotti_addon_no_content_type(pasterdir, pytest_runner):
     output = pytest_runner.stdout.read()
     assert 'werkpalast/tests/test_browser_minimal.rst' in output
     assert 'werkpalast/tests/test_functional_content_type' not in output
-    assert '3 passed' in output
+    assert '4 passed' in output
     assert '100%' in output
 
 
