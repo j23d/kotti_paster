@@ -5,6 +5,15 @@ extensions =
 
 parts =
     application
+#if $omelette
+    omelette
+#if $codeintel
+    codeintel
+#end if
+#end if
+#if $supervisor
+    supervisor
+#end if
 
 auto-checkout =
     ${project}
@@ -17,3 +26,24 @@ recipe = zc.recipe.egg
 eggs = ${project}
 dependent-scripts = true
 interpreter = py
+
+#if $omelette
+[omelette]
+recipe = collective.recipe.omelette
+eggs = \${application:eggs}
+
+#if $codeintel
+[codeintel]
+recipe = corneti.recipes.codeintel
+eggs = \${application:eggs}
+extra-paths = \${omelette:location}
+#end if
+#end if
+
+#if $supervisor
+[supervisor]
+recipe = collective.recipe.supervisor
+supervisord-conf=\${buildout:directory}/supervisord.conf
+programs =
+    10 app %(cwd)s/bin/pserve [%(cwd)s/development.ini]
+#end if

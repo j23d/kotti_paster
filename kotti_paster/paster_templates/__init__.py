@@ -123,12 +123,6 @@ class Buildout(KottiProjectBase):
     vars = copy.deepcopy(KottiProjectBase.vars)
     vars.extend([travis, gitignore, omelette, codeintel, supervisor])
 
-    def insert_template(self, name):
-        """Get the insert file with the part for the option."""
-        template = templates[name](name)
-        filename = "%s_insert" % name
-        return open(join(template.template_dir(), filename)).read()
-
     def post(self, command, output_dir, vars):
         addon_template = Addon(vars['project'])
         addon_template.run(command, join(output_dir, 'src',
@@ -137,19 +131,3 @@ class Buildout(KottiProjectBase):
             if getattr(self, boolflag).validate(vars.get(boolflag, 0)):
                 template = templates[boolflag](boolflag)
                 template.run(command, output_dir, vars)
-        for boolflag in ['omelette', 'codeintel', 'supervisor', ]:
-            if getattr(self, boolflag).validate(vars.get(boolflag, 0)):
-                insert_template = self.insert_template(boolflag)
-                # get the buildout file and enhance it with the part
-                buildout_template = open("%s/buildout.cfg" % output_dir).read()
-                buildout_template += "\n%s" % insert_template
-                # add the name of the part to the parts section
-                insert_point = buildout_template.find('\n\n',
-                                buildout_template.find('parts ='))
-                buildout_template = buildout_template[:insert_point] +\
-                                        "\n" + "    %s" % boolflag +\
-                                        buildout_template[insert_point:]
-                # write the new template content to the buildout file
-                buildout_file = open("%s/buildout.cfg" % output_dir, 'w')
-                buildout_file.write(buildout_template)
-                buildout_file.close()

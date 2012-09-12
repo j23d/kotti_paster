@@ -99,6 +99,22 @@ def test_kotti_project_no_codeintel(pasterdir):
     assert '\n    codeintel' not in buildout_file
 
 
+@paster('kotti_project', 'werkpalast', 'codeintel=yes omelette=yes --no-interactive')
+def test_kotti_project_codeintel_with_omelette(pasterdir):
+    tempdir, cwd, project = pasterdir
+    buildout_file = open('%s/buildout.cfg' % cwd).read()
+    assert '[codeintel]' in buildout_file
+    assert '\n    codeintel' in buildout_file
+
+
+@paster('kotti_project', 'werkpalast', 'codeintel=yes omelette=no --no-interactive')
+def test_kotti_project_no_codeintel_without_omelette(pasterdir):
+    tempdir, cwd, project = pasterdir
+    buildout_file = open('%s/buildout.cfg' % cwd).read()
+    assert '[codeintel]' not in buildout_file
+    assert '\n    codeintel' not in buildout_file
+
+
 @paster('kotti_project', 'werkpalast', 'supervisor=yes --no-interactive')
 def test_kotti_project_supervisor(pasterdir):
     tempdir, cwd, project = pasterdir

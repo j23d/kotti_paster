@@ -1,3 +1,0 @@
-[omelette]
-recipe = collective.recipe.omelette
-eggs = ${application:eggs}
