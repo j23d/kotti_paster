@@ -2,3 +2,5 @@ TODO's
 ======
 
 - add slot(widget?) example or not (default no)
+- enhance README
+- move testing to funcargs style
