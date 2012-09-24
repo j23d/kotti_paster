@@ -26,7 +26,7 @@ def test_kotti_addon_fanstatic(pasterdir):
     tempdir, cwd, project = pasterdir
     setup_file = open('%s/setup.py' % cwd).read()
     search_string = '[fanstatic.libraries]\n      '\
-                    '%(project)s = %(project)s:library' % {'project': project}
+                    '%(project)s = %(project)s.static:library' % {'project': project}
     assert search_string in setup_file
     assert 'static.py' in os.listdir(cwd + '/' + project)
 
