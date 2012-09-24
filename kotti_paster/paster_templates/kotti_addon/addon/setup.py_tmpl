@@ -44,7 +44,7 @@ setup(name=project,
       tests_require=tests_require,
       entry_points="""
       [fanstatic.libraries]
-      ${project} = ${project}:library
+      ${project} = ${project}.static:library
       """,
       extras_require={
           'testing': tests_require,
