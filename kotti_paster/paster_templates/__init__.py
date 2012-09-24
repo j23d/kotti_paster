@@ -51,9 +51,6 @@ class Supervisor(KottiProjectBase):
 templates = dict(
     gitignore=Git,
     travis=Travis,
-    omelette=Omelette,
-    codeintel=Codeintel,
-    supervisor=Supervisor,
     content_type=ContentType,
 )
 
@@ -113,15 +110,16 @@ class Buildout(KottiProjectBase):
         title='Add codeintel?',
         description='Add a codeintel section to the buildout? '\
                     'Only works when also omlette section has been chosen.',
-        default=True)
+        default=False)
 
     supervisor = BooleanVar('supervisor',
         title='Add supervisor?',
         description='Add a supervisor section to the buildout?',
-        default=True)
+        default=False)
 
     vars = copy.deepcopy(KottiProjectBase.vars)
-    vars.extend([travis, gitignore, omelette, codeintel, supervisor])
+    vars.extend([travis, gitignore, omelette, codeintel, supervisor,
+                 Addon.content_type])
 
     def post(self, command, output_dir, vars):
         addon_template = Addon(vars['project'])
