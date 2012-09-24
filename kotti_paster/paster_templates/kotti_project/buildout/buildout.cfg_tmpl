@@ -45,5 +45,5 @@ extra-paths = \${omelette:location}
 recipe = collective.recipe.supervisor
 supervisord-conf=\${buildout:directory}/supervisord.conf
 programs =
-    10 app %(cwd)s/bin/pserve [%(cwd)s/development.ini]
+    10 app \${buildout:directory}/bin/pserve [\${buildout:directory}/development.ini]
 #end if
