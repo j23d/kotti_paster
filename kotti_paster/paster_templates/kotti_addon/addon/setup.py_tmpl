@@ -39,6 +39,7 @@ setup(name=project,
       include_package_data=True,
       zip_safe=${repr(bool($zip_safe)) or False},
       install_requires=[
+          'pyramid<=1.3.3',
           'Kotti',
       ],
       tests_require=tests_require,
