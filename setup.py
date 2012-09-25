@@ -7,14 +7,14 @@ from setuptools import (
 install_requires = [
     'setuptools',
     'PasteScript',
-    'Cheetah',
+    'Cheetah==2.2.1',
     'templer.core',
     ]
 
 tests_require = [
     'virtualenv',
     'PasteScript',
-    'Cheetah',
+    'Cheetah==2.2.1',
     'pytest',
     'mr.laforge',
     ]
