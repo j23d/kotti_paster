@@ -7,14 +7,14 @@ from setuptools import (
 install_requires = [
     'setuptools',
     'PasteScript',
-    'Cheetah==2.2.1',
+    'Cheetah<=2.2.1',  # https://github.com/collective/templer.core/issues/3
     'templer.core',
     ]
 
 tests_require = [
     'virtualenv',
     'PasteScript',
-    'Cheetah==2.2.1',
+    'Cheetah<=2.2.1',
     'pytest',
     'mr.laforge',
     ]
@@ -24,7 +24,7 @@ README = open(os.path.join(here, 'README.rst')).read()
 CHANGES = open(os.path.join(here, 'CHANGES.txt')).read()
 
 setup(name='kotti_paster',
-      version='0.1a1',
+      version='0.1a3dev',
       description="Paster AddOn Template for Kotti",
       long_description=README + '\n\n' + CHANGES,
       classifiers=[
