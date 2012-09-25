@@ -1,5 +1,7 @@
 Changelog
 =========
 
-0.1 (Unreleased)
+0.1a1 (2012-09-25)
 ----------------
+
+- First public release.
