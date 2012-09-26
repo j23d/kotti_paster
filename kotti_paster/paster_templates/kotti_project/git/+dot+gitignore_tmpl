@@ -1,4 +1,4 @@
-{{project}}.egg-info/
+${project}.egg-info/
 bin/
 build/
 dist/
