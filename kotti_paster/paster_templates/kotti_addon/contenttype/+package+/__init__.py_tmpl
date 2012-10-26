@@ -5,3 +5,4 @@ _ = TranslationStringFactory('${package}')
 def kotti_configure(settings):
     settings['kotti.includes'] += ' ${package}.views'
     settings['kotti.available_types'] += ' ${package}.resources.ContentType'
+    settings['kotti.fanstatic.view_needed'] += ' ${project}.fanstatic.${project}_group'
