@@ -16,13 +16,14 @@ class ContentTypeSchema(ContentSchema):
     example_text = colander.SchemaNode(colander.String())
 
 
-@ensure_view_selector
-def edit_content_type(context, request):
-    return generic_edit(context, request, ContentTypeSchema())
+class ContentTypeAddForm(AddFormView):
+    schema_factory = ContentTypeSchema
+    add = ContentType
+    item_type = _(u"ContentType")
 
 
-def add_content_type(context, request):
-    return generic_add(context, request, ContentTypeSchema(), ContentType, u'content_type')
+class ContentTypeEditForm(EditFormView):
+    schema_factory = ContentTypeSchema
 
 
 def view_content_type(context, request):
@@ -35,7 +36,7 @@ def view_content_type(context, request):
 def includeme_edit(config):
 
     config.add_view(
-        edit_content_type,
+        ContentTypeEditForm,
         context=ContentType,
         name='edit',
         permission='edit',
@@ -43,7 +44,7 @@ def includeme_edit(config):
         )
 
     config.add_view(
-        add_content_type,
+        ContentTypeAddForm,
         name=ContentType.type_info.add_view,
         permission='add',
         renderer='kotti:templates/edit/node.pt',
@@ -51,6 +52,7 @@ def includeme_edit(config):
 
 
 def includeme_view(config):
+
     config.add_view(
         view_content_type,
         context=ContentType,
