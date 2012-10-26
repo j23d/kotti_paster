@@ -97,7 +97,12 @@ def pytest_funcarg__pytest_runner(request):
 parts = pytest
 develop = .
 
-find-links = https://nodeload.github.com/Pylons/Kotti/tarball/HEAD#egg=Kotti
+find-links = https://nodeload.github.com/Pylons/Kotti/tarball/HEAD#egg=Kotti-0.8dev
+
+versions = versions
+
+[versions]
+Kotti = 0.8dev
 
 [pytest]
 recipe = z3c.recipe.scripts
