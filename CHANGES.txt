@@ -5,6 +5,9 @@ Changelog
 ------------------
 
 - Fix bug in gitignore template. [disko]
+- Update to Kotti 0.8:
+  - Use fanstatic include in kotti_configure.
+  - Use form classes instead of generic form functions.
 
 
 0.1a2 (2012-09-25)

@@ -6,6 +6,7 @@ from kotti_paster.conftest import paster
 @paster('kotti_addon', 'werkpalast', 'content_type=yes --no-interactive')
 def test_kotti_addon_content_type(pasterdir, pytest_runner):
     output = pytest_runner.stdout.read()
+    print output
     assert 'werkpalast/tests/test_browser_minimal.rst' in output
     assert 'werkpalast/tests/test_functional_content_type' in output
     assert '10 passed' in output

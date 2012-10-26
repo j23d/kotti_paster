@@ -62,6 +62,13 @@ def pytest_funcarg__application(request):
 extends = buildout.cfg
 parts += supervisor
 
+find-links = https://nodeload.github.com/Pylons/Kotti/tarball/HEAD#egg=Kotti-0.8dev
+
+versions = versions
+
+[versions]
+Kotti = 0.8dev
+
 [supervisor]
 recipe = collective.recipe.supervisor
 supervisord-conf=${buildout:directory}/supervisord.conf
