@@ -97,10 +97,13 @@ def pytest_funcarg__pytest_runner(request):
 parts = pytest
 develop = .
 
+find-links = https://nodeload.github.com/Pylons/Kotti/tarball/HEAD#egg=Kotti
+
 [pytest]
 recipe = z3c.recipe.scripts
 scripts = py.test=test
 eggs =
+    Kotti
     %s [testing]
     pytest
         """ % project)
