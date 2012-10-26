@@ -61,7 +61,7 @@ class Addon(KottiAddonBase):
     content_type = BooleanVar('content_type',
         title='Content type example?',
         description='Add content type example to the add-on?',
-        default=True)
+        default=False)
 
     name = subprocess.Popen("git config --get user.name",
             stdout=subprocess.PIPE, shell=True).stdout.read().strip()
