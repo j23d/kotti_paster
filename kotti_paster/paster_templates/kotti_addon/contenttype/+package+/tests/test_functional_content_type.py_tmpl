@@ -1,9 +1,7 @@
 from kotti.resources import get_root
-from kotti.testing import (
-    FunctionalTestBase,
-    DummyRequest,
-)
-from kotti import tests
+from kotti.testing import FunctionalTestBase
+from kotti.testing import DummyRequest 
+from kotti.testing import setUpFunctional 
 
 from ${project}.resources import ContentType
 from ${project}.views import view_content_type
@@ -13,7 +11,7 @@ class TestContentView(FunctionalTestBase):
 
     def setUp(self, **kwargs):
         settings = {'kotti.configurators': '${project}.kotti_configure'}
-        self.__dict__.update(tests.setUpFunctional(**settings))
+        self.__dict__.update(setUpFunctional(**settings))
 
     def test_content_view(self):
         root = get_root()
