@@ -1,6 +1,6 @@
 import colander
-from kotti.views.edit import ContentSchema
 from kotti.views.edit import AddFormView
+from kotti.views.edit import ContentSchema
 from kotti.views.edit import EditFormView
 from kotti.views.util import template_api
 

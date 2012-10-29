@@ -1,8 +1,7 @@
 import os
-from setuptools import (
-    setup,
-    find_packages,
-)
+
+from setuptools import setup
+from setuptools import find_packages
 
 version = ${repr($version) or "0.1"}
 project = '${project}'
