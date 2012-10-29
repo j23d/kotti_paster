@@ -1,7 +1,7 @@
 from kotti.resources import get_root
+from kotti.testing import DummyRequest
 from kotti.testing import FunctionalTestBase
-from kotti.testing import DummyRequest 
-from kotti.testing import setUpFunctional 
+from kotti.testing import setUpFunctional
 
 from ${project}.resources import ContentType
 from ${project}.views import view_content_type

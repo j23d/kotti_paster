@@ -4,9 +4,16 @@ Changelog
 0.1a3 (Unreleased)
 ------------------
 
+- Change imports to PEP8 style.
+
+- Change entry_points to dict style.
+
 - Fix bug in gitignore template. [disko]
+
 - Update to Kotti 0.8:
+
   - Use fanstatic include in kotti_configure.
+
   - Use form classes instead of generic form functions.
 
 
