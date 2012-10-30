@@ -3,8 +3,11 @@ import pkg_resources
 import shutil
 import subprocess
 import tempfile
+
+from mr.laforge import shutdown
+from mr.laforge import up
+from mr.laforge import waitforports
 from py.test import mark
-from mr.laforge import up, waitforports, shutdown
 
 paster = mark.paster
 home = pkg_resources.get_distribution('kotti_paster').location

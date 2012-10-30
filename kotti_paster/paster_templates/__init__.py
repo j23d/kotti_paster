@@ -1,6 +1,7 @@
 import copy
-from os.path import join
 import subprocess
+from os.path import join
+
 from templer.core import BasicNamespace
 from templer.core.vars import BooleanVar
 

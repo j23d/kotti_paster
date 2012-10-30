@@ -1,8 +1,7 @@
 import os
-from setuptools import (
-  setup,
-  find_packages,
-)
+
+from setuptools import find_packages
+from setuptools import setup
 
 install_requires = [
     'setuptools',
@@ -42,11 +41,12 @@ setup(name='kotti_paster',
       zip_safe=False,
       install_requires=install_requires,
       tests_require=tests_require,
-      entry_points="""
-            [paste.paster_create_template]
-            kotti_addon = kotti_paster.paster_templates:Addon
-            kotti_project = kotti_paster.paster_templates:Buildout
-      """,
+      entry_points={
+        'paste.paster_create_template': [
+            'kotti_addon = kotti_paster.paster_templates:Addon',
+            'kotti_project = kotti_paster.paster_templates:Buildout',
+        ]
+      },
       extras_require={
           'testing': tests_require,
           },

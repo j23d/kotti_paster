@@ -1,11 +1,8 @@
-from sqlalchemy import (
-    Column,
-    ForeignKey,
-    Integer,
-    Unicode,
-)
-
 from kotti.resources import Content
+from sqlalchemy import Column
+from sqlalchemy import ForeignKey
+from sqlalchemy import Integer
+from sqlalchemy import Unicode
 
 from ${package} import _
 
