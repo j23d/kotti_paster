@@ -65,7 +65,7 @@ def pytest_funcarg__application(request):
 extends = buildout.cfg
 parts += supervisor
 
-find-links = https://nodeload.github.com/Pylons/Kotti/tarball/HEAD#egg=Kotti-0.8dev
+find-links = http://cheeseshop.jusid.de/cheeseshop/catalog/simple
 
 versions = versions
 
