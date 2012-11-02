@@ -6,6 +6,10 @@ from setuptools import setup
 version = ${repr($version) or "0.1"}
 project = '${project}'
 
+install_requires=[
+        'Kotti',
+    ],
+
 tests_require = [
     'WebTest',
     'mock',
@@ -37,9 +41,7 @@ setup(name=project,
       packages=find_packages(),
       include_package_data=True,
       zip_safe=${repr(bool($zip_safe)) or False},
-      install_requires=[
-          'Kotti',
-      ],
+      install_requires=install_requires,
       tests_require=tests_require,
       entry_points={
         'fanstatic.libraries': [
