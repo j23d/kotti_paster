@@ -70,7 +70,7 @@ find-links = http://cheeseshop.jusid.de/cheeseshop/catalog/simple
 versions = versions
 
 [versions]
-Kotti = 0.8dev
+Kotti = 0.8.0dev
 
 [supervisor]
 recipe = collective.recipe.supervisor
@@ -107,12 +107,12 @@ def pytest_funcarg__pytest_runner(request):
 parts = pytest
 develop = .
 
-find-links = https://nodeload.github.com/Pylons/Kotti/tarball/HEAD#egg=Kotti-0.8dev
+find-links = http://cheeseshop.jusid.de/cheeseshop/catalog/simple
 
 versions = versions
 
 [versions]
-Kotti = 0.8dev
+Kotti = 0.8.0dev
 
 [pytest]
 recipe = z3c.recipe.scripts

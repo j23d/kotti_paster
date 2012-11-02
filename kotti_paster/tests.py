@@ -6,10 +6,9 @@ from kotti_paster.conftest import paster
 @paster('kotti_addon', 'werkpalast', 'content_type=yes --no-interactive')
 def test_kotti_addon_content_type(pasterdir, pytest_runner):
     output = pytest_runner.stdout.read()
-    print output
     assert 'werkpalast/tests/test_browser_minimal.rst' in output
     assert 'werkpalast/tests/test_functional_content_type' in output
-    assert '10 passed' in output
+    assert '9 passed' in output
     assert '100%' in output
 
 
@@ -18,7 +17,7 @@ def test_kotti_addon_no_content_type(pasterdir, pytest_runner):
     output = pytest_runner.stdout.read()
     assert 'werkpalast/tests/test_browser_minimal.rst' in output
     assert 'werkpalast/tests/test_functional_content_type' not in output
-    assert '4 passed' in output
+    assert '3 passed' in output
     assert '100%' in output
 
 
@@ -26,9 +25,9 @@ def test_kotti_addon_no_content_type(pasterdir, pytest_runner):
 def test_kotti_addon_fanstatic(pasterdir):
     tempdir, cwd, project = pasterdir
     setup_file = open('%s/setup.py' % cwd).read()
-    search_string = '[fanstatic.libraries]\n      '\
-                    '%(project)s = %(project)s.static:library' % {'project': project}
-    assert search_string in setup_file
+    search = '%(project)s = %(project)s.static:library' % {'project': project}
+    assert 'fanstatic.libraries' in setup_file
+    assert search in setup_file
     assert 'static.py' in os.listdir(cwd + '/' + project)
 
 
