@@ -11,6 +11,7 @@ local
 .codeintel/
 .coverage
 .installed.cfg
+.mr.developer.cfg
 *.pyc
 *~
 *.swp
