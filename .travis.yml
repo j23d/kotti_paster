@@ -5,6 +5,7 @@ python:
 env:
   - KOTTI_TEST_DB_STRING=sqlite://
 install:
+  - pip install http://pypi.python.org/packages/source/C/Chameleon/Chameleon-2.10.tar.gz#md5=350de4da479aa168ceba198512b91895
   - python bootstrap.py
-  - bin/buildout -t 2
+  - bin/buildout
 script: bin/test
