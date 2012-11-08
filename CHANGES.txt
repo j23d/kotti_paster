@@ -1,16 +1,16 @@
 Changelog
 =========
 
-0.1a3 (Unreleased)
+0.1a3 (2012-11-08)
 ------------------
 
-- Change imports to PEP8 style.
+- Change imports to PEP8 style. [disko]
 
-- Change entry_points to dict style.
+- Change entry_points to dict style. [disko]
 
 - Fix bug in gitignore template. [disko]
 
-- Update to Kotti 0.8:
+- Update to Kotti >= 0.8:
 
   - Use fanstatic include in kotti_configure.
 
