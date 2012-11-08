@@ -100,7 +100,7 @@ You can include an example for a Kotti content type, see the `section for conten
 
    $ paster create -t kotti_addon my_addon_name --no-interactive content_type=true
 
-The addon contains example code - change it and add your fancy stuff. See the `Kotti documentation`_ for further informations.
+The addon contains example code - change it and add your fancy stuff. See the `Kotti documentation`_ for further informations. In the documentation you will find a `tutorial`_ where you get more information how to start an addon with kotti_paster.
 
 
 .. _Kotti documentation: http://kotti.readthedocs.org/en/latest/index.html
@@ -112,3 +112,4 @@ The addon contains example code - change it and add your fancy stuff. See the `K
 .. _supervisor: http://pypi.python.org/pypi/collective.recipe.supervisor
 .. _supervisor documentation: http://supervisor.readthedocs.org/en/latest/index.html
 .. _section for content types in the Kotti developer manual: http://kotti.readthedocs.org/en/latest/developer-manual.html#content-types
+.. _tutorial: http://kotti.readthedocs.org/en/latest/first_steps/tut-1.html
