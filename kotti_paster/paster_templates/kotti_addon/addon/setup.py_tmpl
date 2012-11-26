@@ -35,7 +35,7 @@ setup(name=project,
       tests_require=[],
       entry_points={
         'fanstatic.libraries': [
-          '${project} = ${project}.static:library',
+          '${project} = ${project}.fanstatic:library',
         ],
       },
       extras_require={},
