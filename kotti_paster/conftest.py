@@ -107,19 +107,12 @@ def pytest_funcarg__pytest_runner(request):
 parts = pytest
 develop = .
 
-find-links = http://cheeseshop.jusid.de/cheeseshop/catalog/simple
-
-versions = versions
-
-[versions]
-Kotti = 0.8.0dev
-
 [pytest]
 recipe = z3c.recipe.scripts
 scripts = py.test=test
 eggs =
-    Kotti
-    %s [testing]
+    Kotti [testing]
+    %s
     pytest
         """ % project)
         cfg.close()
