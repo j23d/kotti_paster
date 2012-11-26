@@ -11,7 +11,7 @@ addopts =
 python_files = test*py
 
 [aliases]
-dev = develop easy_install ${project}[testing]
+dev = develop easy_install Kotti[testing] Kotti[development]
 
 [compile_catalog]
 directory = ${project}/locale

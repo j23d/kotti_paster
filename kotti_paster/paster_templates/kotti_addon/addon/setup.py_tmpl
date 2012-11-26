@@ -10,16 +10,6 @@ install_requires=[
         'Kotti',
     ],
 
-tests_require = [
-    'WebTest',
-    'mock',
-    'pytest',
-    'pytest-cov',
-    'pytest-xdist',
-    'wsgi_intercept',
-    'zope.testbrowser',
-    ]
-
 here = os.path.abspath(os.path.dirname(__file__))
 README = open(os.path.join(here, 'README.rst')).read()
 CHANGES = open(os.path.join(here, 'CHANGES.txt')).read()
@@ -42,15 +32,13 @@ setup(name=project,
       include_package_data=True,
       zip_safe=${repr(bool($zip_safe)) or False},
       install_requires=install_requires,
-      tests_require=tests_require,
+      tests_require=[],
       entry_points={
         'fanstatic.libraries': [
           '${project} = ${project}.static:library',
         ],
       },
-      extras_require={
-          'testing': tests_require,
-          },
+      extras_require={},
       message_extractors={'${project}': [
             ('**.py', 'lingua_python', None),
             ('**.zcml', 'lingua_xml', None),

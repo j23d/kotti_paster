@@ -4,6 +4,7 @@ Changelog
 0.1 (Unreleased)
 ----------------
 
+- Use the development requirements directly from Kotti itself. [j23d]
 
 
 0.1a3 (2012-11-08)
