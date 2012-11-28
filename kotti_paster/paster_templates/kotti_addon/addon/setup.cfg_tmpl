@@ -4,11 +4,17 @@ tag_svn_revision = true
 
 [pytest]
 addopts =
-  --doctest-modules --doctest-glob='*.rst' --capture=no
-  --cov=${project} --cov-report=term-missing
-  --ignore=${project}/templates/
-  ${project}/
+    --doctest-modules --doctest-glob='*.rst' --capture=no
+    --cov=${project} --cov-report=term-missing
+    --strict
+    --tb=native
+    --pep8
+    --ignore=${project}/templates/
+    ${project}/
 python_files = test*py
+markers =
+    user: mark test to be run as the given user
+    pep8: mark for pep8
 
 [aliases]
 dev = develop easy_install Kotti[testing] Kotti[development]

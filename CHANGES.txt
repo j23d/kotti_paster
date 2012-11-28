@@ -7,6 +7,7 @@ Changelog
 - Use the development requirements directly from Kotti itself. [j23d]
 - Rename static.py to fanstatic.py for consistency. [j23d]
 - Added example for a test that uses pytest fixtures from Kotti. [j23d]
+- Added a ini file for addons. [j23d]
 
 
 0.1a3 (2012-11-08)
