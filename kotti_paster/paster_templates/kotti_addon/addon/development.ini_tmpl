@@ -1,0 +1,29 @@
+[app:kotti]
+use = egg:kotti
+sqlalchemy.url = sqlite:///%(here)s/${project}.db
+kotti.site_title = ${project}
+kotti.secret = qwerty
+kotti.configurators = ${project}.kotti_configure
+
+pyramid.reload_templates = true
+pyramid.debug_templates = true
+pyramid.debug_authorization = false
+pyramid.debug_notfound = false
+pyramid.debug_routematch = false
+pyramid.default_locale_name = en
+pyramid.includes =
+    pyramid_debugtoolbar
+    pyramid_tm
+
+[filter:fanstatic]
+use = egg:fanstatic#fanstatic
+
+[pipeline:main]
+pipeline =
+    fanstatic
+    kotti
+
+[server:main]
+use = egg:waitress#main
+host = 127.0.0.1
+port = 6543

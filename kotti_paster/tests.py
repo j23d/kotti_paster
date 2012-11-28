@@ -31,6 +31,12 @@ def test_kotti_addon_fanstatic(pasterdir):
     assert 'fanstatic.py' in os.listdir(cwd + '/' + project)
 
 
+@paster('kotti_addon', 'werkpalast', '--no-interactive')
+def test_kotti_addon_development_ini(pasterdir):
+    tempdir, cwd, project = pasterdir
+    assert 'development.ini' in os.listdir(cwd)
+
+
 @paster('kotti_project', 'werkpalast', '--no-interactive')
 def test_kotti_project(pasterdir, application):
     tempdir, cwd, project = pasterdir
