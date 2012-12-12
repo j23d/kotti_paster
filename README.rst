@@ -4,6 +4,12 @@ kotti_paster
 kotti_paster provides "starter" scaffolding for creating a projekt or an addon for Kotti.
 See the `Kotti documentation`_ for detailed documentation.
 
+Warning
+-------
+
+kotti_paster has `bobtemplates.kotti`_ as successor and will not be developed any further. If you are new to Kotti development and interested in developing a theme or an addon you probably want use `mr.bob`_ in conjunction with `bobtemplates.kotti`_. However, if you want explicitly use templer or looking for a scaffold to create yourself a buildout structure for your kotti addon you are on the right place.
+
+
 Installation
 ------------
 
@@ -113,3 +119,5 @@ The addon contains example code - change it and add your fancy stuff. See the `K
 .. _supervisor documentation: http://supervisor.readthedocs.org/en/latest/index.html
 .. _section for content types in the Kotti developer manual: http://kotti.readthedocs.org/en/latest/developer-manual.html#content-types
 .. _tutorial: http://kotti.readthedocs.org/en/latest/first_steps/tut-1.html
+.. _bobtemplates.kotti: http://pypi.python.org/pypi/bobtemplates.kotti
+.. _mr.bob: http://pypi.python.org/pypi/mr.bob
