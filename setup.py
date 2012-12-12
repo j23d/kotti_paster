@@ -23,7 +23,7 @@ README = open(os.path.join(here, 'README.rst')).read()
 CHANGES = open(os.path.join(here, 'CHANGES.txt')).read()
 
 setup(name='kotti_paster',
-      version='0.1dev',
+      version='0.1',
       description="Paster AddOn Template for Kotti",
       long_description=README + '\n\n' + CHANGES,
       classifiers=[
