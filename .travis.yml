@@ -5,6 +5,6 @@ python:
 env:
   - KOTTI_TEST_DB_STRING=sqlite://
 install:
-  - python bootstrap.py
+  - python bootstrap.py -v 2.1
   - bin/buildout
 script: bin/test
