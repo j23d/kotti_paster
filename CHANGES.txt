@@ -1,11 +1,12 @@
 Changelog
 =========
 
-0.2 (Unreleased)
+0.2 (2013-10-18)
 ----------------
 
 - Update to use Kotti 9.2.0. [j23d]
 - Fixing domain for translation. [jon1012]
+
 
 0.1 (2012-12-12)
 ----------------
