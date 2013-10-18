@@ -62,22 +62,20 @@ def pytest_funcarg__application(request):
         cfg = open(os.path.join(cwd, 'supervisor.cfg'), 'w')
         cfg.writelines("""
 [buildout]
-extends = buildout.cfg
+extends =
+    buildout.cfg
+    %(home)s/versions.cfg
+
 parts += supervisor
 
-find-links = http://cheeseshop.jusid.de/cheeseshop/catalog/simple
-
 versions = versions
-
-[versions]
-Kotti = 0.8.0dev
 
 [supervisor]
 recipe = collective.recipe.supervisor
 supervisord-conf=${buildout:directory}/supervisord.conf
 programs =
     10 app %(cwd)s/bin/pserve [%(cwd)s/development.ini]
-""" % dict(cwd=cwd))
+""" % dict(cwd=cwd, home=home))
         cfg.close()
         subprocess.check_call([os.path.join(home, 'bin', 'buildout'), '-c', 'supervisor.cfg'])
         up('app')
@@ -107,14 +105,18 @@ def pytest_funcarg__pytest_runner(request):
 parts = pytest
 develop = .
 
+extends = %(home)s/versions.cfg
+versions = versions
+
 [pytest]
-recipe = z3c.recipe.scripts
+recipe = zc.recipe.egg
 scripts = py.test=test
 eggs =
     Kotti [testing]
-    %s
+    %(project)s
     pytest
-        """ % project)
+        """ % {'home': home,
+               'project': project})
         cfg.close()
         subprocess.check_call([os.path.join(home, 'bin', 'buildout'), '-c', 'testing.cfg'])
         # run the tests:

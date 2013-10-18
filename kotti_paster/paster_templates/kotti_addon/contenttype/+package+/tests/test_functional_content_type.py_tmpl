@@ -26,4 +26,4 @@ class TestContentView(FunctionalTestBase):
         browser.getControl('Title').value = u'Content Type Title'
         browser.getControl('Example Text').value = u'some Text'
         browser.getControl('save').click()
-        assert "Successfully added item" in browser.contents
+        assert "Item was added." in browser.contents

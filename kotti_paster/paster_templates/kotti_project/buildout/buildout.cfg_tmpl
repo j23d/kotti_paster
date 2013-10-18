@@ -1,7 +1,6 @@
 [buildout]
 extensions =
     mr.developer
-    buildout.dumppickedversions
 
 parts =
     application

@@ -30,7 +30,7 @@ Add a ContentType
   >>> ctrl("save").click()
   >>> browser.url == testing.BASE_URL + '/new-content-type/'
   True
-  >>> "Successfully added item" in browser.contents
+  >>> "Item was added." in browser.contents
   True
 
 
